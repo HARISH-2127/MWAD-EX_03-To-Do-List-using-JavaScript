@@ -1,7 +1,7 @@
 # MWAD-EX_03-To-Do-List-using-JavaScript
+## NAME: HARISH S
+## REG NO: 212224040105
 
-## Name: HARISH S 
-## Reg No : 212224040105
 ## AIM
 To create a To-do Application with all features using JavaScript.
 
@@ -36,203 +36,266 @@ Deploy the website.
 ### STEP 10
 Upload to GitHub Pages for free hosting.
 
-## PROGRAM:
-# index.html
+## PROGRAM
+## Index.html
 ```
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple To-Do App</title>
+  <title>Colorful To-Do List</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-container">
-    <h2>To-Do Tasks</h2>
-    <div class="input-wrapper">
-      <input type="text" id="newTask" placeholder="Add a new task...">
-      <button id="addTaskBtn">+</button>
-    </div>
-    <div class="tasks-list" id="tasksList"></div>
-  </div>
+  <div class="todo-container">
+    <h1>🌈 My To-Do List</h1>
 
-  <footer>
-    <p>Made by <b>T DANUSH REDDY 212223040029</b></p>
-  </footer>
+    <div class="input-section">
+      <input type="text" id="task-input" placeholder="Add a new task...">
+      <input type="date" id="task-date">
+      <select id="task-priority">
+        <option value="low">🟢 Low</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+      <button id="add-btn">Add Task</button>
+    </div>
+
+    <ul id="task-list"></ul>
+    <button id="clear-btn">Clear All</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
 
 ```
-# style.css
+## Style.css
 ```
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+* {
+  box-sizing: border-box;
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.app-container {
-  background-color: #fff;
-  width: 90%;
-  max-width: 800px;
-  padding: 30px 40px;
-  margin-top: 50px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 25px;
-  font-size: 2em;
-}
-
-.input-wrapper {
+body {
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.todo-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  width: 450px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.todo-container h1 {
+  color: #333;
   margin-bottom: 20px;
 }
 
-#newTask {
+.input-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#task-input {
+  flex: 2;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#task-date, #task-priority {
   flex: 1;
-  padding: 15px 20px;
-  border-radius: 10px 0 0 10px;
-  border: 1px solid #ccc;
-  outline: none;
-  font-size: 1.1em;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  font-size: 14px;
 }
 
-#addTaskBtn {
-  background-color: #ff7f50;
-  color: white;
+#add-btn {
+  padding: 10px 15px;
   border: none;
-  padding: 0 25px;
-  font-size: 1.5em;
-  font-weight: bold;
+  background-color: #6a0dad;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 0 10px 10px 0;
-  transition: background 0.3s ease;
+  transition: 0.3s;
 }
 
-#addTaskBtn:hover {
-  background-color: #ff6347;
+#add-btn:hover {
+  background-color: #8e2de2;
 }
 
-.tasks-list {
-  max-height: 500px;
+#task-list {
+  list-style: none;
+  max-height: 300px;
   overflow-y: auto;
+  padding: 0;
 }
 
-.task-item {
+#task-list li {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f7f7f7;
-  margin-bottom: 15px;
-  padding: 15px 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 1.2em;
+  transition: 0.2s;
+  background: #f0f0f0;
 }
 
-.task-item.completed {
+#task-list li.completed span {
   text-decoration: line-through;
-  color: #999;
+  color: #888;
 }
 
-.task-item:hover {
-  background-color: #e0e0e0;
-}
-
-.task-item button {
-  background-color: #ff4d4d;
+.task-btns button {
+  background: none;
   border: none;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 8px;
+  margin-left: 8px;
   cursor: pointer;
-  font-size: 1em;
-  transition: background 0.3s ease;
-}
-
-.task-item button:hover {
-  background-color: #cc0000;
-}
-
-footer {
-  margin-top: auto;
-  padding: 15px;
   font-size: 16px;
-  color: #555;
-  text-align: center;
 }
 
-```
-# script.js
-```
-const taskInput = document.getElementById("newTask");
-const addBtn = document.getElementById("addTaskBtn");
-const tasksList = document.getElementById("tasksList");
+.task-btns button.edit { color: #2196F3; }
+.task-btns button.delete { color: #f44336; }
 
-window.onload = loadTasks;
+#clear-btn {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  background: #ff5722;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+#clear-btn:hover {
+  background: #e64a19;
+}
+
+/* Priority Colors */
+.low { border-left: 5px solid #4caf50; }
+.medium { border-left: 5px solid #ffc107; }
+.high { border-left: 5px solid #f44336; }
+```
+## Script.js
+```
+const input = document.getElementById("task-input");
+const dateInput = document.getElementById("task-date");
+const priorityInput = document.getElementById("task-priority");
+const addBtn = document.getElementById("add-btn");
+const taskList = document.getElementById("task-list");
+const clearBtn = document.getElementById("clear-btn");
+
+// Load tasks from localStorage
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+renderTasks();
+
+// Add Task
 addBtn.addEventListener("click", () => {
-  const taskText = taskInput.value.trim();
-  if (!taskText) return;
-  addTask(taskText);
-  taskInput.value = "";
+    const taskText = input.value.trim();
+    const taskDate = dateInput.value;
+    const taskPriority = priorityInput.value;
+
+    if(taskText) {
+        const task = {
+            text: taskText,
+            date: taskDate,
+            priority: taskPriority,
+            completed: false
+        };
+        tasks.push(task);
+        saveTasks();
+        renderTasks();
+        input.value = "";
+        dateInput.value = "";
+        priorityInput.value = "low";
+    }
 });
 
-function addTask(text, completed = false) {
-  const taskDiv = document.createElement("div");
-  taskDiv.className = "task-item";
-  if (completed) taskDiv.classList.add("completed");
-  taskDiv.textContent = text;
+// Render Tasks
+function renderTasks() {
+    taskList.innerHTML = "";
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = task.priority + (task.completed ? " completed" : "");
+        li.innerHTML = `
+            <span>${task.text} ${task.date ? "| 📅 " + task.date : ""}</span>
+            <div class="task-btns">
+                <button class="edit">✏️</button>
+                <button class="delete">🗑️</button>
+            </div>
+        `;
+        taskList.appendChild(li);
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Delete";
-  deleteBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    taskDiv.remove();
-    saveTasks();
-  });
+        // Toggle complete
+        li.querySelector("span").addEventListener("click", () => {
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks();
+            renderTasks();
+        });
 
-  taskDiv.appendChild(deleteBtn);
-  taskDiv.addEventListener("click", () => {
-    taskDiv.classList.toggle("completed");
-    saveTasks();
-  });
+        // Edit
+        li.querySelector(".edit").addEventListener("click", () => {
+            const newText = prompt("Edit task:", tasks[index].text);
+            if(newText) {
+                tasks[index].text = newText;
+                saveTasks();
+                renderTasks();
+            }
+        });
 
-  tasksList.appendChild(taskDiv);
-  saveTasks();
-}
-
-function saveTasks() {
-  const tasks = [];
-  document.querySelectorAll(".task-item").forEach(task => {
-    tasks.push({
-      text: task.firstChild.textContent,
-      completed: task.classList.contains("completed")
+        // Delete
+        li.querySelector(".delete").addEventListener("click", () => {
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
+        });
     });
-  });
-  localStorage.setItem("simpleTasks", JSON.stringify(tasks));
 }
 
-function loadTasks() {
-  const tasks = JSON.parse(localStorage.getItem("simpleTasks")) || [];
-  tasks.forEach(task => addTask(task.text, task.completed));
+// Clear all tasks
+clearBtn.addEventListener("click", () => {
+    if(confirm("Are you sure you want to clear all tasks?")) {
+        tasks = [];
+        saveTasks();
+        renderTasks();
+    }
+});
+
+// Save tasks to localStorage
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 ```
-## OUTPUT:
-<img width="1897" height="1013" alt="image" src="https://github.com/user-attachments/assets/567f2308-dc3a-4b72-89a2-730b6f530a60" />
+
+## OUTPUT
+## LOW PRIORITY
+<img width="1905" height="974" alt="image" src="https://github.com/user-attachments/assets/9340c245-1805-4a4d-a51b-7bb8d83c1609" />
+
+## MEDIUM PRIORITY
+<img width="1902" height="976" alt="image" src="https://github.com/user-attachments/assets/fbace6b2-0da1-4706-8f07-53e7468371e0" />
+
+## HIGH PRIORITY
+<img width="1910" height="928" alt="image" src="https://github.com/user-attachments/assets/f5412957-d89d-4800-a0e8-f4c2d6fa9e88" />
+
 
 
 
